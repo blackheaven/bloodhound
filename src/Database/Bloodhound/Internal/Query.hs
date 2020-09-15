@@ -1614,7 +1614,7 @@ functionScoreFunctionsPair (FunctionScoreMultiple componentFns) =
 fieldTagged :: Monad m => (FieldName -> Object -> m a) -> Object -> m a
 fieldTagged f o = case HM.toList o of
                     [(k, Object o')] -> f (FieldName k) o'
-                    _ -> fail "Expected object with 1 field-named key"
+                    _ -> error "Expected object with 1 field-named key"
 
 -- | Fuzziness value as a number or 'AUTO'.
 -- See:

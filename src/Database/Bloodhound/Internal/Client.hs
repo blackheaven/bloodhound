@@ -2295,11 +2295,11 @@ instance ToJSON Interval where
 
 parseStringInterval :: (Monad m) => String -> m NominalDiffTime
 parseStringInterval s = case span isNumber s of
-  ("", _) -> fail "Invalid interval"
+  ("", _) -> error "Invalid interval"
   (nS, unitS) -> case (readMay nS, readMay unitS) of
     (Just n, Just unit) -> return (fromInteger (n * unitNDT unit))
-    (Nothing, _)        -> fail "Invalid interval number"
-    (_, Nothing)        -> fail "Invalid interval unit"
+    (Nothing, _)        -> error "Invalid interval number"
+    (_, Nothing)        -> error "Invalid interval unit"
   where
     unitNDT Seconds = 1
     unitNDT Minutes = 60
